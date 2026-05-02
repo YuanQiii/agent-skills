@@ -6,7 +6,7 @@
   "maxRetries": 3,
   "retryBaseDelayMs": 1000,
   "watchPaths": ["skills/", ".skill-lock.json"],
-  "addPaths": ["skills", ".skill-lock.json", "package.json", "sync.config.json", "utils.js", "watch.js", "sync.js", "generate-catalog.js", "translation-helper.js", "translate-descriptions.js", "skills-catalog.md", "translated-descriptions.json"],
+  "addPaths": ["skills", ".skill-lock.json", "package.json", "sync.config.json", "sync/", "skills-catalog.md", "translated-descriptions.json"],
   "logToFile": true,
   "logFileName": "sync.log"
 }
