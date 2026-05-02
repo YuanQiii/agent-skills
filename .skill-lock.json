@@ -252,9 +252,8 @@
       "sourceUrl": "https://github.com/forrestchang/andrej-karpathy-skills.git",
       "skillPath": "skills/karpathy-guidelines/SKILL.md",
       "skillFolderHash": "e119339197d600aa39a24fd7a95c946800c9c949",
-      "pluginName": "andrej-karpathy-skills",
       "installedAt": "2026-04-14T01:18:48.956Z",
-      "updatedAt": "2026-04-16T13:53:28.991Z"
+      "updatedAt": "2026-04-14T02:26:09.993Z"
     },
     "pdf": {
       "source": "anthropics/skills",
@@ -366,6 +365,15 @@
       "installedAt": "2026-04-07T14:23:55.278Z",
       "updatedAt": "2026-04-14T02:38:07.699Z"
     },
+    "normalize": {
+      "source": "pbakaus/impeccable",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/pbakaus/impeccable.git",
+      "skillPath": ".agents/skills/normalize/SKILL.md",
+      "skillFolderHash": "6e66a498328536dc62fe14f0a0f2a93d9e3df876",
+      "installedAt": "2026-04-10T13:44:42.131Z",
+      "updatedAt": "2026-04-10T13:44:42.131Z"
+    },
     "clarify": {
       "source": "pbakaus/impeccable",
       "sourceType": "github",
@@ -401,6 +409,15 @@
       "skillFolderHash": "828c239ac986cc1fc7edd10292f66e4a3640e9c0",
       "installedAt": "2026-04-10T13:52:51.478Z",
       "updatedAt": "2026-04-14T05:23:59.704Z"
+    },
+    "harden": {
+      "source": "pbakaus/impeccable",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/pbakaus/impeccable.git",
+      "skillPath": ".agents/skills/harden/SKILL.md",
+      "skillFolderHash": "8a28ce8076cf52b22ce509d033bd2b81091bcc30",
+      "installedAt": "2026-04-10T13:55:28.962Z",
+      "updatedAt": "2026-04-10T13:57:47.588Z"
     },
     "sleek-design-mobile-apps": {
       "source": "sleekdotdesign/agent-skills",
@@ -2643,15 +2660,6 @@
       "skillFolderHash": "",
       "installedAt": "2026-04-14T06:29:15.405Z",
       "updatedAt": "2026-04-14T06:29:15.405Z"
-    },
-    "docker-expert": {
-      "source": "sickn33/antigravity-awesome-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/sickn33/antigravity-awesome-skills.git",
-      "skillPath": "skills/docker-expert/SKILL.md",
-      "skillFolderHash": "6e4ef11e3f04a33822d9d2a36b43c556f564972c",
-      "installedAt": "2026-04-25T06:41:45.062Z",
-      "updatedAt": "2026-04-25T06:41:45.062Z"
     }
   },
   "dismissed": {
