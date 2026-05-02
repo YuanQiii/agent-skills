@@ -1,8 +1,10 @@
 const chokidar = require('chokidar');
 const { simpleGit } = require('simple-git');
 const path = require('path');
+const fs = require('fs');
 const { config, log, retry, getTimestamp } = require('./utils');
 const { generateCatalog } = require('./generate-catalog');
+const { translateAndSave, loadTranslations } = require('./translation-helper');
 
 const SKILLS_DIR = path.join(config.agentsDir, 'skills');
 const git = simpleGit(config.agentsDir);
@@ -26,6 +28,44 @@ function isSkillsChange(filePath) {
   return filePath.startsWith('skills/') || filePath === '.skill-lock.json';
 }
 
+function isNewSkillFile(filePath) {
+  return /\/SKILL\.md$/.test(filePath);
+}
+
+function extractSkillNameFromPath(filePath) {
+  const match = filePath.match(/skills\/([^\/]+)\/SKILL\.md$/);
+  return match ? match[1] : null;
+}
+
+async function translateNewSkillIfNeeded(filePath) {
+  const skillName = extractSkillNameFromPath(filePath);
+  if (!skillName) return null;
+
+  const translations = loadTranslations();
+  if (translations[skillName]) {
+    log(`ℹ️  技能 [${skillName}] 已有翻译`);
+    return null;
+  }
+
+  const skillFile = path.join(SKILLS_DIR, skillName, 'SKILL.md');
+  if (!fs.existsSync(skillFile)) return null;
+
+  const content = fs.readFileSync(skillFile, 'utf8');
+  let description = '';
+
+  const dm = content.match(/^description:\s*["']?(.+?)["']?\s*$/m);
+  if (dm) description = dm[1].trim();
+  else {
+    const dm2 = content.match(/description:\s*\n\s+(.+)/);
+    if (dm2) description = dm2[1].trim();
+  }
+
+  log(`🔤 翻译新技能 [${skillName}]: ${description?.substring(0, 30)}...`);
+  const cn = await translateAndSave(skillName, description);
+  log(`✅ 翻译完成: ${cn}`);
+  return { name: skillName, translation: cn };
+}
+
 async function syncToGitHub() {
   if (isSyncing) {
     hasPendingChanges = true;
@@ -40,6 +80,15 @@ async function syncToGitHub() {
     const status = await git.status();
 
     const relevantChanges = status.files.filter(f => isRelevantChange(f.path));
+
+    const newSkillFiles = relevantChanges.filter(f => isNewSkillFile(f.path));
+
+    if (newSkillFiles.length > 0) {
+      log(`🔤 检测到 ${newSkillFiles.length} 个新技能，开始翻译...`);
+      for (const f of newSkillFiles) {
+        await translateNewSkillIfNeeded(f.path);
+      }
+    }
 
     if (relevantChanges.length === 0) {
       log('ℹ️  无相关变化');
@@ -126,6 +175,7 @@ watcher
     log(`📂 监视目录: ${SKILLS_DIR}`);
     log('📄 监视文件: .skill-lock.json, package.json, sync.config.json');
     log(`⏰ 变化后 ${config.debounceMs / 1000} 秒自动同步到 GitHub`);
+    log('🔤 新增 Skill 时自动调用 DeepSeek 翻译');
     log('按 Ctrl+C 停止监视\n');
   });
 
