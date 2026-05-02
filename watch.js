@@ -2,6 +2,7 @@ const chokidar = require('chokidar');
 const { simpleGit } = require('simple-git');
 const path = require('path');
 const { config, log, retry, getTimestamp } = require('./utils');
+const { generateCatalog } = require('./generate-catalog');
 
 const SKILLS_DIR = path.join(config.agentsDir, 'skills');
 const git = simpleGit(config.agentsDir);
@@ -19,6 +20,10 @@ const WATCHED_PATTERNS = [
 
 function isRelevantChange(filePath) {
   return WATCHED_PATTERNS.some(pattern => pattern.test(filePath));
+}
+
+function isSkillsChange(filePath) {
+  return filePath.startsWith('skills/') || filePath === '.skill-lock.json';
 }
 
 async function syncToGitHub() {
@@ -44,7 +49,17 @@ async function syncToGitHub() {
     log('📝 检测到变化文件:');
     relevantChanges.forEach(f => log(`   - ${f.path} (${f.index}${f.working_dir})`));
 
-    await git.add(config.addPaths);
+    const hasSkillsChange = relevantChanges.some(f => isSkillsChange(f.path));
+    if (hasSkillsChange) {
+      log('📋 Skills 变化，重新生成目录...');
+      try {
+        generateCatalog();
+      } catch (e) {
+        log(`⚠️  目录生成失败: ${e.message}`);
+      }
+    }
+
+    await git.add([...config.addPaths, 'skills-catalog.md']);
 
     const commitMessage = `自动同步: ${getTimestamp()}`;
     await git.commit(commitMessage);

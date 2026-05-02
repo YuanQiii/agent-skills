@@ -5,7 +5,8 @@
   "main": "watch.js",
   "scripts": {
     "sync": "node sync.js",
-    "watch": "node watch.js"
+    "watch": "node watch.js",
+    "catalog": "node generate-catalog.js"
   },
   "keywords": ["agent", "skills", "sync", "git"],
   "author": "",

@@ -1,5 +1,6 @@
 const { simpleGit } = require('simple-git');
 const { config, log, retry, getTimestamp } = require('./utils');
+const { generateCatalog } = require('./generate-catalog');
 
 async function sync() {
   log('🔄 开始同步...\n');
@@ -21,7 +22,20 @@ async function sync() {
              filePath === 'sync.config.json';
     });
 
-    if (relevantChanges.length === 0) {
+    const hasSkillsChange = relevantChanges.some(f =>
+      f.path.startsWith('skills/') || f.path === '.skill-lock.json'
+    );
+
+    if (hasSkillsChange) {
+      log('📋 Skills 变化，重新生成目录...');
+      try {
+        generateCatalog();
+      } catch (e) {
+        log(`⚠️  目录生成失败: ${e.message}`);
+      }
+    }
+
+    if (relevantChanges.length === 0 && !hasSkillsChange) {
       log('ℹ️  无变化需要同步\n');
       return;
     }
@@ -33,7 +47,7 @@ async function sync() {
     });
     log('');
 
-    await git.add(config.addPaths);
+    await git.add([...config.addPaths, 'skills-catalog.md']);
 
     const commitMessage = `手动同步: ${getTimestamp()}`;
     log(`📝 提交信息: ${commitMessage}\n`);
