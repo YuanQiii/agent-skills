@@ -11,25 +11,36 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
 
       - name: 显示变更
+        id: show-changes
+        continue-on-error: true
         run: |
           echo "📝 本次推送/拉取请求的变更:"
-          if [ $(git rev-list --count HEAD) -gt 1 ]; then
+          if git rev-parse --verify HEAD~1 > /dev/null 2>&1; then
             git diff --stat HEAD~1 HEAD
           else
-            echo "   (首次提交，无历史记录)"
+            echo "   (首次提交或历史不足)"
           fi
 
       - name: 验证 skills 结构
+        id: verify-skills
+        continue-on-error: true
         run: |
           echo "📂 Skills 目录结构验证:"
-          echo "   - skills 目录数: $(ls -1 skills/ 2>/dev/null | wc -l)"
-          echo "   - 包含 SKILL.md: $(find skills/ -name 'SKILL.md' | wc -l)"
+          SKILLS_COUNT=$(ls -1 skills/ 2>/dev/null | wc -l)
+          SKILL_MD_COUNT=$(find skills/ -name 'SKILL.md' 2>/dev/null | wc -l)
+          echo "   - skills 目录数: $SKILLS_COUNT"
+          echo "   - 包含 SKILL.md: $SKILL_MD_COUNT"
           echo ""
 
       - name: 确认同步状态
+        if: always()
         run: |
-          echo "✅ 已同步到 GitHub"
-          echo "📅 同步时间: $(date -u '+%Y-%m-%d %H:%M:%S') UTC"
+          echo "✅ 工作流执行完成"
+          echo "📅 执行时间: $(date -u '+%Y-%m-%d %H:%M:%S') UTC"
           echo "🌐 仓库地址: ${{ github.repository }}"
+          echo "🔄 触发事件: ${{ github.event_name }}"
+          echo "📤 提交哈希: ${{ github.sha }}"
