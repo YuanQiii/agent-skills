@@ -397,6 +397,16 @@ const DESC_CN = {
 };
 
 function generateCatalog() {
+  const translatedPath = path.join(__dirname, 'translated-descriptions.json');
+  let translated = {};
+  if (fs.existsSync(translatedPath)) {
+    try {
+      translated = JSON.parse(fs.readFileSync(translatedPath, 'utf8'));
+    } catch (e) {
+      log(`⚠️  翻译文件加载失败: ${e.message}`);
+    }
+  }
+
   const skillsDir = path.join(config.agentsDir, 'skills');
   const items = fs.readdirSync(skillsDir).filter(f =>
     fs.statSync(path.join(skillsDir, f)).isDirectory()
@@ -446,7 +456,7 @@ function generateCatalog() {
     md += '| 技能名称 | 中文简介 |\n';
     md += '|---------|---------|\n';
     catSkills.forEach(skill => {
-      const cn = DESC_CN[skill.name] || DESC_CN[skill.dir] || skill.desc || '（暂无描述）';
+      const cn = translated[skill.name] || translated[skill.dir] || skill.desc || '（暂无描述）';
       md += `| \`${skill.name}\` | ${cn} |\n`;
     });
     md += '\n';
