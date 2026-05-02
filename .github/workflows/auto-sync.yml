@@ -1,0 +1,31 @@
+name: 自动同步确认
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  confirm-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: 显示变更
+        run: |
+          echo "📝 本次推送/拉取请求的变更:"
+          git diff --stat HEAD~1 HEAD
+
+      - name: 验证 skills 结构
+        run: |
+          echo "📂 Skills 目录结构验证:"
+          echo "   - skills 目录数: $(ls -1 skills/ 2>/dev/null | wc -l)"
+          echo "   - 包含 SKILL.md: $(find skills/ -name 'SKILL.md' | wc -l)"
+          echo ""
+
+      - name: 确认同步状态
+        run: |
+          echo "✅ 已同步到 GitHub"
+          echo "📅 同步时间: $(date -u '+%Y-%m-%d %H:%M:%S') UTC"
+          echo "🌐 仓库地址: ${{ github.repository }}"

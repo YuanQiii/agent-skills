@@ -1,0 +1,52 @@
+name: 定时同步
+on:
+  schedule:
+    - cron: '0 */2 * * *'
+  workflow_dispatch:
+
+jobs:
+  scheduled-backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 配置 Git
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+
+      - name: 显示时间
+        run: |
+          echo "📅 执行时间 (UTC): $(date -u '+%Y-%m-%d %H:%M:%S')"
+          echo "📅 执行时间 (本地): $(date '+%Y-%m-%d %H:%M:%S')"
+
+      - name: 统计数据
+        run: |
+          echo "📊 Skills 统计:"
+          echo "   - Skills 目录数: $(ls -1 skills/ | wc -l)"
+          echo "   - SKILL.md 文件数: $(find skills/ -name 'SKILL.md' | wc -l)"
+          echo ""
+
+      - name: 检查远程更新
+        run: |
+          echo "🔍 检查远程仓库更新..."
+          git fetch origin
+
+          LOCAL=$(git rev-parse HEAD)
+          REMOTE=$(git rev-parse origin/${{ github.ref_name }})
+
+          if [ "$LOCAL" = "$REMOTE" ]; then
+            echo "ℹ️  本地和远程已是最新"
+          else
+            echo "⚠️  远程有更新，可能需要拉取"
+            echo "   本地: $LOCAL"
+            echo "   远程: $REMOTE"
+          fi
+
+      - name: 显示最近活动
+        run: |
+          echo "📝 最近提交记录:"
+          git log --oneline -5

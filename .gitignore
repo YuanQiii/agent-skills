@@ -1,0 +1,11 @@
+node_modules/
+.DS_Store
+*.log
+*.tmp
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+Thumbs.db
+pnpm-lock.yaml

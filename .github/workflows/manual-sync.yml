@@ -1,0 +1,68 @@
+name: 手动同步
+on:
+  workflow_dispatch:
+    inputs:
+      message:
+        description: 提交信息（可选）
+        required: false
+        default: ''
+        type: string
+
+jobs:
+  manual-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 配置 Git
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+
+      - name: 显示状态
+        run: |
+          echo "📅 当前时间: $(date -u '+%Y-%m-%d %H:%M:%S') UTC"
+          echo "📂 Git 状态:"
+          git status
+          echo ""
+          echo "📝 最近提交:"
+          git log --oneline -10
+
+      - name: 检查是否有需要同步的内容
+        id: check
+        run: |
+          if git diff HEAD --quiet; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "ℹ️  没有新的变更需要同步"
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "📝 检测到本地变更"
+            git diff --stat
+          fi
+
+      - name: 提交变更
+        if: steps.check.outputs.has_changes == 'true'
+        run: |
+          git add skills/ .skill-lock.json package.json
+          COMMIT_MSG="${{ inputs.message }}"
+          if [ -z "$COMMIT_MSG" ]; then
+            COMMIT_MSG="手动同步: $(date -u '+%Y-%m-%d %H:%M:%S') UTC"
+          fi
+          git commit -m "$COMMIT_MSG"
+          echo "✅ 提交成功"
+
+      - name: 推送
+        if: steps.check.outputs.has_changes == 'true'
+        run: |
+          echo "📤 推送到远程仓库..."
+          git push origin ${{ github.ref_name }}
+          echo "✅ 推送成功"
+
+      - name: 显示最终状态
+        run: |
+          echo ""
+          echo "📊 最终状态:"
+          git log --oneline -5
