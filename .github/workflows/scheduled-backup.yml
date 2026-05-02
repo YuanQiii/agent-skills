@@ -1,8 +1,11 @@
-name: 定时同步
+name: 定时备份
 on:
   schedule:
     - cron: '0 */2 * * *'
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   scheduled-backup:
@@ -21,14 +24,17 @@ jobs:
       - name: 显示时间
         run: |
           echo "📅 执行时间 (UTC): $(date -u '+%Y-%m-%d %H:%M:%S')"
-          echo "📅 执行时间 (本地): $(date '+%Y-%m-%d %H:%M:%S')"
 
       - name: 统计数据
+        id: stats
         run: |
+          SKILLS_COUNT=$(ls -1 skills/ 2>/dev/null | wc -l)
+          SKILL_MD_COUNT=$(find skills/ -name 'SKILL.md' 2>/dev/null | wc -l)
           echo "📊 Skills 统计:"
-          echo "   - Skills 目录数: $(ls -1 skills/ | wc -l)"
-          echo "   - SKILL.md 文件数: $(find skills/ -name 'SKILL.md' | wc -l)"
-          echo ""
+          echo "   - Skills 目录数: $SKILLS_COUNT"
+          echo "   - SKILL.md 文件数: $SKILL_MD_COUNT"
+          echo "skills_count=$SKILLS_COUNT" >> $GITHUB_OUTPUT
+          echo "skill_md_count=$SKILL_MD_COUNT" >> $GITHUB_OUTPUT
 
       - name: 检查远程更新
         run: |
@@ -46,7 +52,33 @@ jobs:
             echo "   远程: $REMOTE"
           fi
 
+      - name: 验证 skills 完整性
+        continue-on-error: true
+        run: |
+          echo "🔍 验证 skills 目录完整性..."
+          EMPTY_DIRS=$(find skills/ -maxdepth 1 -type d -empty 2>/dev/null)
+          if [ -n "$EMPTY_DIRS" ]; then
+            echo "⚠️  发现空目录:"
+            echo "$EMPTY_DIRS"
+          else
+            echo "✅ 所有 skills 目录非空"
+          fi
+
+          MISSING_SKILL_MD=""
+          for dir in skills/*/; do
+            if [ ! -f "${dir}SKILL.md" ]; then
+              MISSING_SKILL_MD="${MISSING_SKILL_MD}\n   - ${dir}"
+            fi
+          done
+
+          if [ -n "$MISSING_SKILL_MD" ]; then
+            echo "⚠️  以下目录缺少 SKILL.md:"
+            echo -e "$MISSING_SKILL_MD"
+          else
+            echo "✅ 所有 skills 目录包含 SKILL.md"
+          fi
+
       - name: 显示最近活动
         run: |
           echo "📝 最近提交记录:"
-          git log --oneline -5
+          git log --oneline -10

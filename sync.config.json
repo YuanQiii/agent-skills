@@ -1,0 +1,12 @@
+{
+  "agentsDir": "",
+  "debounceMs": 5000,
+  "branch": "main",
+  "remote": "origin",
+  "maxRetries": 3,
+  "retryBaseDelayMs": 1000,
+  "watchPaths": ["skills/", ".skill-lock.json"],
+  "addPaths": ["skills", ".skill-lock.json", "package.json", "sync.config.json"],
+  "logToFile": true,
+  "logFileName": "sync.log"
+}

@@ -8,6 +8,9 @@ on:
         default: ''
         type: string
 
+permissions:
+  contents: write
+
 jobs:
   manual-sync:
     runs-on: ubuntu-latest
@@ -34,19 +37,20 @@ jobs:
       - name: 检查是否有需要同步的内容
         id: check
         run: |
-          if git diff HEAD --quiet; then
+          if git diff --cached --quiet && git diff --quiet; then
             echo "has_changes=false" >> $GITHUB_OUTPUT
             echo "ℹ️  没有新的变更需要同步"
           else
             echo "has_changes=true" >> $GITHUB_OUTPUT
-            echo "📝 检测到本地变更"
+            echo "📝 检测到变更"
             git diff --stat
+            git diff --cached --stat
           fi
 
       - name: 提交变更
         if: steps.check.outputs.has_changes == 'true'
         run: |
-          git add skills/ .skill-lock.json package.json
+          git add skills/ .skill-lock.json package.json sync.config.json utils.js watch.js sync.js
           COMMIT_MSG="${{ inputs.message }}"
           if [ -z "$COMMIT_MSG" ]; then
             COMMIT_MSG="手动同步: $(date -u '+%Y-%m-%d %H:%M:%S') UTC"
@@ -62,6 +66,7 @@ jobs:
           echo "✅ 推送成功"
 
       - name: 显示最终状态
+        if: always()
         run: |
           echo ""
           echo "📊 最终状态:"

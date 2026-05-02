@@ -8,20 +8,29 @@ Agent Skills 双向同步工具，支持本地实时监视和 GitHub Actions 定
 - ✅ GitHub Actions 定时备份（每2小时）
 - ✅ 支持手动触发同步
 - ✅ 完整的 Git 版本控制
+- ✅ 指数退避重试机制
+- ✅ 文件日志记录
+- ✅ 可配置参数（sync.config.json）
 
 ## 🚀 快速开始
 
 ### 第一步：安装依赖
 
 ```bash
-cd c:\Users\93402\.agents
+cd ~/.agents
 pnpm install
 ```
 
 ### 第二步：配置 Git 认证
 
 ```bash
-git config --global credential.helper store
+# 方式1：Git Credential Manager（推荐 Windows）
+git config --global credential.helper manager
+
+# 方式2：GitHub CLI（推荐跨平台）
+gh auth login
+
+# 添加远程仓库
 git remote add origin https://github.com/YuanQiii/agent-skills.git
 ```
 
@@ -42,7 +51,7 @@ pnpm run watch
 ## 📁 目录结构
 
 ```
-c:\Users\93402\.agents\
+~/.agents/
 ├── skills/                    # Skills 文件夹
 │   ├── skill-a/
 │   │   └── SKILL.md
@@ -54,10 +63,13 @@ c:\Users\93402\.agents\
 │       ├── scheduled-backup.yml # 定时备份
 │       └── auto-sync.yml      # 自动确认
 ├── .skill-lock.json           # Skills 锁定文件
-├── package.json              # 方案三依赖
-├── watch.js                  # 本地监视脚本
-├── sync.js                   # 手动同步脚本
-└── .gitignore
+├── package.json               # 依赖配置
+├── sync.config.json           # 同步配置文件
+├── utils.js                   # 公共工具模块
+├── watch.js                   # 本地监视脚本
+├── sync.js                    # 手动同步脚本
+├── .gitignore
+└── .gitattributes
 ```
 
 ## 🔧 使用方法
@@ -68,7 +80,7 @@ c:\Users\93402\.agents\
 pnpm run watch
 ```
 
-监视到文件变化后 5 秒自动同步到 GitHub。
+监视到文件变化后自动同步到 GitHub（默认5秒防抖）。
 
 ### 手动同步
 
@@ -89,25 +101,58 @@ pnpm run sync
 #### 定时同步
 每2小时自动执行一次。
 
+## ⚙️ 配置文件
+
+编辑 `sync.config.json` 自定义行为：
+
+```json
+{
+  "debounceMs": 5000,
+  "branch": "main",
+  "remote": "origin",
+  "maxRetries": 3,
+  "retryBaseDelayMs": 1000,
+  "logToFile": true
+}
+```
+
+| 参数 | 默认值 | 说明 |
+|------|--------|------|
+| `debounceMs` | 5000 | 防抖延迟（毫秒） |
+| `branch` | "main" | 推送分支 |
+| `remote` | "origin" | 远程名称 |
+| `maxRetries` | 3 | 最大重试次数 |
+| `retryBaseDelayMs` | 1000 | 重试基础延迟（毫秒） |
+| `logToFile` | true | 是否写入日志文件 |
+| `logFileName` | "sync.log" | 日志文件名 |
+
 ## ⚠️ 注意事项
 
 1. **首次推送需要认证**：确保已配置 GitHub 认证
 2. **监视延迟**：文件变化后 5 秒才触发同步
 3. **网络要求**：需要网络连接才能同步
+4. **重试机制**：网络失败后自动重试3次（指数退避）
 
 ## 🔐 GitHub 认证配置
 
-### 方法1：Personal Access Token
+### 方法1：Git Credential Manager（推荐 Windows）
 ```bash
-git remote set-url origin https://<TOKEN>@github.com/YuanQiii/agent-skills.git
+git config --global credential.helper manager
+git push  # 首次会弹出 Windows 凭据管理器
 ```
 
-### 方法2：Git Credential Helper
+### 方法2：GitHub CLI（推荐跨平台）
 ```bash
-git config --global credential.helper store
-git push # 首次会提示输入用户名和密码
+gh auth login
+```
+
+### 方法3：环境变量
+```bash
+# 设置自定义 .agents 目录
+export AGENTS_DIR=/path/to/.agents
 ```
 
 ## 📝 更新日志
 
 - 2026-05-02: 初始版本
+- 2026-05-02: 修复安全问题、添加重试机制、配置文件支持

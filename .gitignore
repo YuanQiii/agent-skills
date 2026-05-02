@@ -1,6 +1,7 @@
 node_modules/
 .DS_Store
 *.log
+!sync.log
 *.tmp
 .vscode/
 .idea/
@@ -8,4 +9,3 @@ node_modules/
 *.swo
 *~
 Thumbs.db
-pnpm-lock.yaml
