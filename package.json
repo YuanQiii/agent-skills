@@ -1,19 +1,30 @@
 {
   "name": "agent-skills-sync",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Agent skills 本地同步工具 - 监视文件变化并自动同步到 GitHub",
-  "main": "sync/watcher.js",
+  "type": "module",
+  "main": "dist/watcher.js",
   "scripts": {
-    "sync": "node sync/sync-cli.js",
-    "watch": "node sync/watcher.js",
-    "catalog": "node sync/catalog.js",
-    "translate": "node sync/translate-cli.js"
+    "build": "tsc",
+    "sync": "node dist/cli/sync.js",
+    "watch": "node dist/watcher.js",
+    "catalog": "node dist/catalog.js",
+    "translate": "node dist/cli/translate.js",
+    "dev:sync": "tsx src/cli/sync.ts",
+    "dev:watch": "tsx src/watcher.ts",
+    "dev:catalog": "tsx src/catalog.ts",
+    "dev:translate": "tsx src/cli/translate.ts"
   },
   "keywords": ["agent", "skills", "sync", "git"],
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "chokidar": "^3.5.3",
-    "simple-git": "^3.16.0"
+    "chokidar": "^3.6.0",
+    "simple-git": "^3.27.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
   }
 }
