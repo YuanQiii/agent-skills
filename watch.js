@@ -96,7 +96,7 @@ async function syncToGitHub() {
     }
 
     log('📝 检测到变化文件:');
-    relevantChanges.forEach(f => log(`   - ${f.path} (${f.index}${f.working_dir})`));
+    relevantChanges.forEach(f => log(`   - ${f.path} (${f.index || ''}${f.working_dir || ''})`));
 
     const hasSkillsChange = relevantChanges.some(f => isSkillsChange(f.path));
     if (hasSkillsChange) {
@@ -185,4 +185,12 @@ process.on('SIGINT', () => {
     log('✅ 监视已停止');
     process.exit(0);
   });
+});
+
+process.on('uncaughtException', (err) => {
+  log(`❌ 未捕获异常: ${err.message}`);
+});
+
+process.on('unhandledRejection', (reason) => {
+  log(`❌ 未处理的 Promise 拒绝: ${reason}`);
 });

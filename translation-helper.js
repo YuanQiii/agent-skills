@@ -2,9 +2,16 @@ const fs = require('fs');
 const path = require('path');
 const https = require('https');
 
-const API_KEY = 'sk-fd66016421434d89919a3c5223f04a00';
+const API_KEY = process.env.DEEPSEEK_API_KEY || '';
 const API_URL = 'api.deepseek.com';
 const TRANSLATED_FILE = path.join(__dirname, 'translated-descriptions.json');
+
+function getApiKey() {
+  if (!API_KEY) {
+    throw new Error('请设置 DEEPSEEK_API_KEY 环境变量');
+  }
+  return API_KEY;
+}
 
 async function translateText(text, retries = 3) {
   if (!text || text.trim() === '') return '';
@@ -28,7 +35,7 @@ Chinese:`;
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${API_KEY}`,
+      'Authorization': `Bearer ${getApiKey()}`,
       'Content-Length': Buffer.byteLength(data)
     }
   };
@@ -116,6 +123,7 @@ async function translateNewSkills(newSkills) {
 }
 
 module.exports = {
+  getApiKey,
   translateText,
   sleep,
   loadTranslations,
