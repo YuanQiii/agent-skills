@@ -15,7 +15,11 @@ jobs:
       - name: 显示变更
         run: |
           echo "📝 本次推送/拉取请求的变更:"
-          git diff --stat HEAD~1 HEAD
+          if [ $(git rev-list --count HEAD) -gt 1 ]; then
+            git diff --stat HEAD~1 HEAD
+          else
+            echo "   (首次提交，无历史记录)"
+          fi
 
       - name: 验证 skills 结构
         run: |
