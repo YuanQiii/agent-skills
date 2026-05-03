@@ -1,12 +1,14 @@
 {
   "agentsDir": "",
+  "dataDir": "",
+  "logsDir": "",
   "debounceMs": 5000,
   "branch": "main",
   "remote": "origin",
   "maxRetries": 3,
   "retryBaseDelayMs": 1000,
   "watchPaths": ["skills/", ".skill-lock.json"],
-  "addPaths": ["skills", ".skill-lock.json", "package.json", "sync.config.json", "sync/", "skills-catalog.md", "translated-descriptions.json"],
-  "logToFile": true,
-  "logFileName": "sync.log"
+  "addPaths": ["skills", ".skill-lock.json", "package.json", "sync.config.json", "data/", "src/", "tsconfig.json"],
+  "logLevel": "info",
+  "translationRpm": 30
 }

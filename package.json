@@ -4,27 +4,46 @@
   "description": "Agent skills 本地同步工具 - 监视文件变化并自动同步到 GitHub",
   "type": "module",
   "main": "dist/watcher.js",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "scripts": {
     "build": "tsc",
     "sync": "node dist/cli/sync.js",
     "watch": "node dist/watcher.js",
-    "catalog": "node dist/catalog.js",
+    "catalog": "node dist/cli/catalog.js",
     "translate": "node dist/cli/translate.js",
     "dev:sync": "tsx src/cli/sync.ts",
     "dev:watch": "tsx src/watcher.ts",
-    "dev:catalog": "tsx src/catalog.ts",
-    "dev:translate": "tsx src/cli/translate.ts"
+    "dev:catalog": "tsx src/cli/catalog.ts",
+    "dev:translate": "tsx src/cli/translate.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint src/",
+    "typecheck": "tsc --noEmit"
   },
-  "keywords": ["agent", "skills", "sync", "git"],
+  "keywords": [
+    "agent",
+    "skills",
+    "sync",
+    "git"
+  ],
   "author": "",
   "license": "MIT",
   "dependencies": {
     "chokidar": "^3.6.0",
+    "pino": "^9.7.0",
+    "pino-pretty": "^13.0.0",
+    "pino-roll": "^4.0.0",
     "simple-git": "^3.27.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.0.0",
     "@types/node": "^22.0.0",
+    "eslint": "^9.0.0",
     "tsx": "^4.19.0",
-    "typescript": "^5.7.0"
+    "typescript": "^5.7.0",
+    "typescript-eslint": "^8.0.0",
+    "vitest": "^3.0.0"
   }
 }

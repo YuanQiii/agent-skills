@@ -1,6 +1,7 @@
 node_modules/
+dist/
 .DS_Store
-*.log
+logs/
 *.tmp
 .vscode/
 .idea/
@@ -8,3 +9,4 @@ node_modules/
 *.swo
 *~
 Thumbs.db
+coverage/

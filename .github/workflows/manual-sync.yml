@@ -50,7 +50,7 @@ jobs:
       - name: 提交变更
         if: steps.check.outputs.has_changes == 'true'
         run: |
-          git add skills/ .skill-lock.json package.json sync.config.json utils.js watch.js sync.js generate-catalog.js translation-helper.js translate-descriptions.js skills-catalog.md translated-descriptions.json
+          git add skills/ .skill-lock.json package.json sync.config.json data/ src/ tsconfig.json
           COMMIT_MSG="${{ inputs.message }}"
           if [ -z "$COMMIT_MSG" ]; then
             COMMIT_MSG="手动同步: $(date -u '+%Y-%m-%d %H:%M:%S') UTC"

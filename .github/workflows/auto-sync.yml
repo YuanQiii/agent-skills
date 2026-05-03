@@ -9,7 +9,7 @@ permissions:
   contents: read
 
 jobs:
-  confirm-sync:
+  verify:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -17,8 +17,24 @@ jobs:
         with:
           fetch-depth: 2
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check
+        run: npx tsc --noEmit
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm test
+
       - name: 显示变更
-        id: show-changes
         continue-on-error: true
         run: |
           echo "📝 本次推送/拉取请求的变更:"
@@ -29,7 +45,6 @@ jobs:
           fi
 
       - name: 验证 skills 结构
-        id: verify-skills
         continue-on-error: true
         run: |
           echo "📂 Skills 目录结构验证:"
@@ -37,7 +52,6 @@ jobs:
           SKILL_MD_COUNT=$(find skills/ -name 'SKILL.md' 2>/dev/null | wc -l)
           echo "   - skills 目录数: $SKILLS_COUNT"
           echo "   - 包含 SKILL.md: $SKILL_MD_COUNT"
-          echo ""
 
       - name: 确认同步状态
         if: always()
