@@ -16,36 +16,34 @@ export const logger = pino(
   {
     level: process.env.LOG_LEVEL ?? 'info',
     timestamp: pino.stdTimeFunctions.isoTime,
-    formatters: {
-      level(label) {
-        return { level: label };
-      },
+    messageKey: 'msg',
+    transport: {
+      targets: [
+        {
+          target: 'pino-pretty',
+          level: 'info',
+          options: {
+            colorize: true,
+            translateTime: 'SYS:yyyy-mm-dd HH:MM:ss',
+            ignore: 'pid,hostname',
+            messageKey: 'msg',
+            crlf: true,
+            singleLine: true,
+            destination: 1,
+          },
+        },
+        {
+          target: 'pino-roll',
+          level: 'info',
+          options: {
+            file: logFilePath,
+            size: '5m',
+            mkdir: true,
+          },
+        },
+      ],
     },
   },
-  pino.multistream([
-    {
-      level: 'info',
-      stream: pino.transport({
-        target: 'pino-pretty',
-        options: {
-          colorize: true,
-          translateTime: 'SYS:yyyy-mm-dd HH:MM:ss',
-          ignore: 'pid,hostname',
-        },
-      }),
-    },
-    {
-      level: 'info',
-      stream: pino.transport({
-        target: 'pino-roll',
-        options: {
-          file: logFilePath,
-          size: '5m',
-          mkdir: true,
-        },
-      }),
-    },
-  ]),
 );
 
 export function getTimestamp(): string {

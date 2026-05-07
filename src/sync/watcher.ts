@@ -1,5 +1,6 @@
 import chokidar from 'chokidar';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { getConfig } from '../infra/config.js';
 import { logger } from '../infra/logger.js';
 import { createGitInstance } from '../infra/git-operations.js';
@@ -13,7 +14,7 @@ const MAX_SYNC_ROUNDS = 5;
 
 function debouncedSync(): void {
   const config = getConfig();
-  logger.info({ debounceMs: config.debounceMs }, '检测到文件变化，稍后同步...');
+  logger.info({ debounceMs: config.debounceMs }, 'File change detected, syncing in a moment...');
   if (debounceTimer) clearTimeout(debounceTimer);
   debounceTimer = setTimeout(async () => {
     await performSync();
@@ -23,12 +24,12 @@ function debouncedSync(): void {
 async function performSync(round = 1): Promise<void> {
   if (isSyncing) {
     hasPendingChanges = true;
-    logger.info('同步中，记录待处理变更');
+    logger.info('Sync in progress, recording pending changes');
     return;
   }
 
   if (round > MAX_SYNC_ROUNDS) {
-    logger.warn({ maxRounds: MAX_SYNC_ROUNDS }, '达到最大同步轮次，停止递归');
+    logger.warn({ maxRounds: MAX_SYNC_ROUNDS }, 'Max sync rounds reached, stopping recursion');
     return;
   }
 
@@ -41,11 +42,11 @@ async function performSync(round = 1): Promise<void> {
     await currentSyncPromise;
 
     if (hasPendingChanges) {
-      logger.info('检测到待处理变更，继续同步...');
+      logger.info('Pending changes detected, continuing sync...');
       await performSync(round + 1);
     }
   } catch (error) {
-    logger.error({ err: (error as Error).message }, '监视同步失败');
+    logger.error({ err: (error as Error).message }, 'Watch sync failed');
   } finally {
     isSyncing = false;
     currentSyncPromise = null;
@@ -53,7 +54,7 @@ async function performSync(round = 1): Promise<void> {
 }
 
 export async function gracefulShutdown(watcher: chokidar.FSWatcher): Promise<void> {
-  logger.info('正在停止监视...');
+  logger.info('Stopping watcher...');
 
   if (debounceTimer) {
     clearTimeout(debounceTimer);
@@ -61,12 +62,12 @@ export async function gracefulShutdown(watcher: chokidar.FSWatcher): Promise<voi
   }
 
   if (currentSyncPromise) {
-    logger.info('等待进行中的同步完成...');
+    logger.info('Waiting for ongoing sync to complete...');
     await currentSyncPromise.catch(() => {});
   }
 
   await watcher.close();
-  logger.info('监视已停止');
+  logger.info('Watcher stopped');
 }
 
 export function startWatcher(): void {
@@ -93,25 +94,25 @@ export function startWatcher(): void {
 
   watcher
     .on('add', filePath => {
-      logger.info({ event: 'add', path: filePath }, '文件添加');
+      logger.info({ event: 'add', path: filePath }, 'File added');
       debouncedSync();
     })
     .on('change', filePath => {
-      logger.info({ event: 'change', path: filePath }, '文件修改');
+      logger.info({ event: 'change', path: filePath }, 'File modified');
       debouncedSync();
     })
     .on('unlink', filePath => {
-      logger.info({ event: 'unlink', path: filePath }, '文件删除');
+      logger.info({ event: 'unlink', path: filePath }, 'File deleted');
       debouncedSync();
     })
     .on('error', error => {
-      logger.error({ error }, '监视错误');
+      logger.error({ error }, 'Watcher error');
     })
     .on('ready', () => {
-      logger.info({ dir: skillsDir }, 'Agent Skills 监视已启动');
-      logger.info({ debounceMs: config.debounceMs }, '变化后自动同步到 GitHub');
-      logger.info('新增 Skill 时自动调用 DeepSeek 翻译');
-      logger.info('按 Ctrl+C 停止监视');
+      logger.info({ dir: skillsDir }, 'Agent Skills watcher started');
+      logger.info({ debounceMs: config.debounceMs }, 'Auto-sync to GitHub on changes');
+      logger.info('Auto-translate new skills using DeepSeek');
+      logger.info('Press Ctrl+C to stop watching');
     });
 
   process.on('SIGINT', async () => {
@@ -125,10 +126,15 @@ export function startWatcher(): void {
   });
 
   process.on('uncaughtException', err => {
-    logger.error({ err }, '未捕获异常');
+    logger.error({ err }, 'Uncaught exception');
   });
 
   process.on('unhandledRejection', reason => {
-    logger.error({ reason }, '未处理的 Promise 拒绝');
+    logger.error({ reason }, 'Unhandled promise rejection');
   });
+}
+
+const __filename = fileURLToPath(import.meta.url);
+if (__filename === process.argv[1]) {
+  startWatcher();
 }

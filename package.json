@@ -3,18 +3,18 @@
   "version": "3.0.0",
   "description": "Agent skills 本地同步工具 - 监视文件变化并自动同步到 GitHub",
   "type": "module",
-  "main": "dist/watcher.js",
+  "main": "dist/sync/watcher.js",
   "engines": {
     "node": ">=20.0.0"
   },
   "scripts": {
     "build": "tsc",
     "sync": "node dist/cli/sync.js",
-    "watch": "node dist/watcher.js",
+    "watch": "chcp 65001 && node dist/sync/watcher.js",
     "catalog": "node dist/cli/catalog.js",
     "translate": "node dist/cli/translate.js",
     "dev:sync": "tsx src/cli/sync.ts",
-    "dev:watch": "tsx src/watcher.ts",
+    "dev:watch": "chcp 65001 && tsx src/sync/watcher.ts",
     "dev:catalog": "tsx src/cli/catalog.ts",
     "dev:translate": "tsx src/cli/translate.ts",
     "test": "vitest run",
