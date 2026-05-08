@@ -1,6 +1,6 @@
 # Agent Skills Catalog
 
-> 295 个可用技能 (9 个已删除), 18 个分类
+> 294 个可用技能 (10 个已删除), 18 个分类
 
 ---
 
@@ -9,7 +9,7 @@
 - [1. 前端框架与库](#1-%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B8%8E%E5%BA%93) (45 (2 已删除))
 - [2. 后端开发](#2-%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91) (18)
 - [3. 数据库与存储](#3-%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%8E%E5%AD%98%E5%82%A8) (13)
-- [4. DevOps 与云](#4-DevOps-%E4%B8%8E%E4%BA%91) (44 (3 已删除))
+- [4. DevOps 与云](#4-DevOps-%E4%B8%8E%E4%BA%91) (43 (4 已删除))
 - [5. 测试与质量保障](#5-%E6%B5%8B%E8%AF%95%E4%B8%8E%E8%B4%A8%E9%87%8F%E4%BF%9D%E9%9A%9C) (37)
 - [6. Python 生态](#6-Python-%E7%94%9F%E6%80%81) (11)
 - [7. AI/ML 与数据工程](#7-AI%2FML-%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B) (11 (1 已删除))
@@ -165,12 +165,12 @@
 | slo-implementation | 定义并实施SLI和SLO，含错误预算与告警，用于设定可靠性目标、实施SRE或衡量服务性能。 |
 | spark-optimization | 使用分区、缓存、洗牌优化和内存调优提升Spark作业性能。 |
 | task-coordination-strategies | 分解复杂任务，设计依赖图，协调多智能体工作，平衡任务描述与负载。用于拆分任务、管理依赖或监控进度。 |
-| turborepo-caching | 配置Turborepo实现高效单体仓库构建，支持本地与远程缓存。 |
 | uv-package-manager | 掌握uv包管理器，快速管理Python依赖、虚拟环境与项目工作流。 |
 | writing-skills | 创建新技能、编辑或部署前验证时使用。 |
 | ~~hybrid-cloud-networking~~ | ~~使用VPN和专线，安全高效连接本地与云平台，适用于混合云、数据中心互联及跨域组网。~~ |
 | ~~terraform-module-library~~ | ~~遵循IaC最佳实践，为AWS、Azure、GCP和OCI构建可复用的Terraform模块。~~ |
 | ~~turborepo~~ | ~~(无描述)~~ |
+| ~~turborepo-caching~~ | ~~配置Turborepo实现高效单体仓库构建，支持本地与远程缓存。~~ |
 
 ## 5. 测试与质量保障
 
@@ -421,4 +421,4 @@
 | evaluation-methodology | 插件质量评估方法——维度、评分标准、统计方法与公式。用于理解质量测量、解读低分、提升触发准确度或编排适配度、校准市场评分阈值，或向外部合作伙伴解释质量徽章。 |
 | shellcheck-configuration | 掌握ShellCheck静态分析配置与用法，提升脚本质量，用于搭建检查、修复代码或确保可移植性。 |
 
-> 统计: 18 个分类, 295 个技能 (9 个已删除)
+> 统计: 18 个分类, 294 个技能 (10 个已删除)
