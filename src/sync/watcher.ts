@@ -14,7 +14,7 @@ const MAX_SYNC_ROUNDS = 5;
 
 function debouncedSync(): void {
   const config = getConfig();
-  logger.info({ debounceMs: config.debounceMs }, 'File change detected, syncing in a moment...');
+  logger.info({ debounceMs: config.debounceMs }, '检测到文件变化，稍后同步...');
   if (debounceTimer) clearTimeout(debounceTimer);
   debounceTimer = setTimeout(async () => {
     await performSync();
@@ -24,12 +24,12 @@ function debouncedSync(): void {
 async function performSync(round = 1): Promise<void> {
   if (isSyncing) {
     hasPendingChanges = true;
-    logger.info('Sync in progress, recording pending changes');
+    logger.info('同步中，记录待处理变更');
     return;
   }
 
   if (round > MAX_SYNC_ROUNDS) {
-    logger.warn({ maxRounds: MAX_SYNC_ROUNDS }, 'Max sync rounds reached, stopping recursion');
+    logger.warn({ maxRounds: MAX_SYNC_ROUNDS }, '达到最大同步轮次，停止递归');
     return;
   }
 
@@ -42,11 +42,11 @@ async function performSync(round = 1): Promise<void> {
     await currentSyncPromise;
 
     if (hasPendingChanges) {
-      logger.info('Pending changes detected, continuing sync...');
+      logger.info('检测到待处理变更，继续同步...');
       await performSync(round + 1);
     }
   } catch (error) {
-    logger.error({ err: (error as Error).message }, 'Watch sync failed');
+    logger.error({ err: error }, '监视同步失败');
   } finally {
     isSyncing = false;
     currentSyncPromise = null;
@@ -54,7 +54,7 @@ async function performSync(round = 1): Promise<void> {
 }
 
 export async function gracefulShutdown(watcher: chokidar.FSWatcher): Promise<void> {
-  logger.info('Stopping watcher...');
+  logger.info('正在停止监视...');
 
   if (debounceTimer) {
     clearTimeout(debounceTimer);
@@ -62,12 +62,12 @@ export async function gracefulShutdown(watcher: chokidar.FSWatcher): Promise<voi
   }
 
   if (currentSyncPromise) {
-    logger.info('Waiting for ongoing sync to complete...');
+    logger.info('等待进行中的同步完成...');
     await currentSyncPromise.catch(() => {});
   }
 
   await watcher.close();
-  logger.info('Watcher stopped');
+  logger.info('监视已停止');
 }
 
 export function startWatcher(): void {
@@ -94,25 +94,25 @@ export function startWatcher(): void {
 
   watcher
     .on('add', filePath => {
-      logger.info({ event: 'add', path: filePath }, 'File added');
+      logger.info({ event: 'add', path: filePath }, '文件添加');
       debouncedSync();
     })
     .on('change', filePath => {
-      logger.info({ event: 'change', path: filePath }, 'File modified');
+      logger.info({ event: 'change', path: filePath }, '文件修改');
       debouncedSync();
     })
     .on('unlink', filePath => {
-      logger.info({ event: 'unlink', path: filePath }, 'File deleted');
+      logger.info({ event: 'unlink', path: filePath }, '文件删除');
       debouncedSync();
     })
     .on('error', error => {
-      logger.error({ error }, 'Watcher error');
+      logger.error({ err: error }, '监视错误');
     })
     .on('ready', () => {
-      logger.info({ dir: skillsDir }, 'Agent Skills watcher started');
-      logger.info({ debounceMs: config.debounceMs }, 'Auto-sync to GitHub on changes');
-      logger.info('Auto-translate new skills using DeepSeek');
-      logger.info('Press Ctrl+C to stop watching');
+      logger.info({ dir: skillsDir }, 'Agent Skills 监视已启动');
+      logger.info({ debounceMs: config.debounceMs }, '变化后自动同步到 GitHub');
+      logger.info('新增 Skill 时自动调用 DeepSeek 翻译');
+      logger.info('按 Ctrl+C 停止监视');
     });
 
   process.on('SIGINT', async () => {
@@ -126,11 +126,11 @@ export function startWatcher(): void {
   });
 
   process.on('uncaughtException', err => {
-    logger.error({ err }, 'Uncaught exception');
+    logger.error({ err }, '未捕获异常');
   });
 
   process.on('unhandledRejection', reason => {
-    logger.error({ reason }, 'Unhandled promise rejection');
+    logger.error({ reason }, '未处理的 Promise 拒绝');
   });
 }
 

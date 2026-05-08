@@ -1,7 +1,7 @@
 import path from 'node:path';
 import type { SimpleGit, StatusResult } from 'simple-git';
 import { getConfig } from '../infra/config.js';
-import { logger, getTimestamp } from '../infra/logger.js';
+import { logger } from '../infra/logger.js';
 import { readAllSkills, parseSkillMd } from '../core/skills.js';
 import { generateCatalog } from '../core/catalog.js';
 import { loadTranslations, translateAndSave } from '../infra/translator.js';
@@ -62,7 +62,7 @@ export async function syncToGitHub(
       })),
     }, '检测到变化文件');
 
-    const commitMessage = `${autoTranslate ? '自动' : '手动'}同步: ${getTimestamp()}`;
+    const commitMessage = `${autoTranslate ? '自动' : '手动'}同步: ${new Date().toISOString()}`;
     const result = await gitAddCommitPush(
       git,
       [...config.addPaths, 'data/'],

@@ -37,16 +37,16 @@ describe('categorizeSkills', () => {
 describe('generateCatalogMarkdown', () => {
   it('should generate valid markdown', () => {
     const md = generateCatalogMarkdown(mockSkills, {});
-    expect(md).toContain('# Agent Skills 技能分类索引');
-    expect(md).toContain('4 个技能');
+    expect(md).toContain('# Agent Skills Catalog');
+    expect(md).toContain('4 active skills');
     expect(md).toContain('vue');
     expect(md).toContain('docker-expert');
   });
 
   it('should use translations when available', () => {
-    const translations = { 'vue': 'Vue 3 最佳实践' };
+    const translations = { 'vue': 'Vue 3 Best Practices' };
     const md = generateCatalogMarkdown(mockSkills, translations);
-    expect(md).toContain('Vue 3 最佳实践');
+    expect(md).toContain('Vue 3 Best Practices');
   });
 
   it('should fallback to description when no translation', () => {
@@ -54,9 +54,9 @@ describe('generateCatalogMarkdown', () => {
     expect(md).toContain('Vue 3 patterns');
   });
 
-  it('should show 暂无描述 for skills without desc or translation', () => {
+  it('should show (no description) for skills without desc or translation', () => {
     const skills: SkillInfo[] = [{ name: 'empty', dir: 'empty', desc: '' }];
     const md = generateCatalogMarkdown(skills, {});
-    expect(md).toContain('暂无描述');
+    expect(md).toContain('(no description)');
   });
 });

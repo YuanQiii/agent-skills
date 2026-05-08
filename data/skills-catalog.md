@@ -1,36 +1,35 @@
-# Agent Skills 技能分类索引
+# Agent Skills Catalog
 
-> 共计 302 个技能（2 个已删除），按功能领域分为 17 大类
-
----
-
-## 📑 目录
-
-- [1. 前端框架与库](#1-%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B8%8E%E5%BA%93) (45)
-- [2. UI/UX 设计](#2-UI%2FUX-%E8%AE%BE%E8%AE%A1) (170)
-- [3. 后端开发](#3-%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91) (9)
-- [4. 数据库与存储](#4-%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%8E%E5%AD%98%E5%82%A8) (2)
-- [5. DevOps 与云基础设施](#5-DevOps-%E4%B8%8E%E4%BA%91%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD) (18)
-- [6. 测试与质量保证](#6-%E6%B5%8B%E8%AF%95%E4%B8%8E%E8%B4%A8%E9%87%8F%E4%BF%9D%E8%AF%81) (14)
-- [7. Python 生态](#7-Python-%E7%94%9F%E6%80%81) (3)
-- [8. AI/ML 与数据工程](#8-AI%2FML-%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B) (1)
-- [9. 安全](#9-%E5%AE%89%E5%85%A8) (4)
-- [10. 文档与内容处理](#10-%E6%96%87%E6%A1%A3%E4%B8%8E%E5%86%85%E5%AE%B9%E5%A4%84%E7%90%86) (7)
-- [11. Git 与版本控制](#11-Git-%E4%B8%8E%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6) (1)
-- [12. 架构与设计模式](#12-%E6%9E%B6%E6%9E%84%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F) (2)
-- [13. 移动端开发](#13-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91) (3)
-- [14. 创业与商业](#14-%E5%88%9B%E4%B8%9A%E4%B8%8E%E5%95%86%E4%B8%9A) (3 (2 删除))
-- [15. 开发工作流与协作](#15-%E5%BC%80%E5%8F%91%E5%B7%A5%E4%BD%9C%E6%B5%81%E4%B8%8E%E5%8D%8F%E4%BD%9C) (7)
-- [16. 工具与实用程序](#16-%E5%B7%A5%E5%85%B7%E4%B8%8E%E5%AE%9E%E7%94%A8%E7%A8%8B%E5%BA%8F) (9)
-- [17. 其他](#17-%E5%85%B6%E4%BB%96) (4)
+> 301 active skills (3 deleted), 17 categories
 
 ---
 
-## 1. 前端框架与库
+## Table of Contents
 
-| 技能名称 | 中文简介 |
-|---------|---------|
-| `angular-migration` | 使用混合模式、增量重写组件和更新依赖注入，从AngularJS迁移到Angular。适用于升级AngularJS应用、规划框架迁移或现代化遗留代码。 |
+- [1. Frontend Framework & Libraries](#1-Frontend-Framework-%26-Libraries) (44 (1 deleted))
+- [2. UI/UX Design](#2-UI%2FUX-Design) (170)
+- [3. Backend Development](#3-Backend-Development) (9)
+- [4. Database & Storage](#4-Database-%26-Storage) (2)
+- [5. DevOps & Cloud](#5-DevOps-%26-Cloud) (18)
+- [6. Testing & QA](#6-Testing-%26-QA) (14)
+- [7. Python Ecosystem](#7-Python-Ecosystem) (3)
+- [8. AI/ML & Data Engineering](#8-AI%2FML-%26-Data-Engineering) (1)
+- [9. Security](#9-Security) (4)
+- [10. Documentation & Content](#10-Documentation-%26-Content) (7)
+- [11. Git & Version Control](#11-Git-%26-Version-Control) (1)
+- [12. Architecture & Design Patterns](#12-Architecture-%26-Design-Patterns) (2)
+- [13. Mobile Development](#13-Mobile-Development) (3)
+- [14. Startup & Business](#14-Startup-%26-Business) (3 (2 deleted))
+- [15. Development Workflow & Collaboration](#15-Development-Workflow-%26-Collaboration) (7)
+- [16. Tools & Utilities](#16-Tools-%26-Utilities) (9)
+- [17. Other](#17-Other) (4)
+
+---
+
+## 1. Frontend Framework & Libraries
+
+| Skill Name | Description |
+|------------|-------------|
 | `antfu` | Anthony Fu 对 JS/TS 项目的工具与规范偏好，适用于新项目、ESLint/Prettier 替代、monorepo、库发布等场景。 |
 | `better-auth-best-practices` | 配置Better Auth服务端与客户端，设置数据库适配器、管理会话、添加插件及环境变量。用于用户提及Better Auth、auth.ts或需配置TypeScript认证时。 |
 | `brandkit` | 高端品牌视觉生成技能，涵盖极简、奢华、科技等风格，优化标志概念、构图、排版及象征意义。 |
@@ -75,11 +74,12 @@
 | `web-artifacts-builder` | 用于创建复杂多组件Claude AI HTML工件的工具套件（React、Tailwind CSS、shadcn/ui）。适用于需状态管理或路由的复杂工件，非简单单文件HTML/JSX。 |
 | `web-component-design` | 精通React、Vue、Svelte组件模式，含CSS-in-JS、组合策略与可复用架构。 |
 | `wechat-miniprogram-skill` | 微信原生小程序开发专家指南，聚焦性能、代码体积与原生兼容性。 |
+| ~~`angular-migration`~~ | ~~使用混合模式、增量重写组件和更新依赖注入，从AngularJS迁移到Angular。适用于升级AngularJS应用、规划框架迁移或现代化遗留代码。~~ |
 
-## 2. UI/UX 设计
+## 2. UI/UX Design
 
-| 技能名称 | 中文简介 |
-|---------|---------|
+| Skill Name | Description |
+|------------|-------------|
 | `accessibility-compliance` | 实现WCAG 2.2合规界面，支持移动无障碍、包容性设计及辅助技术。 |
 | `adapt` | 适配不同屏幕尺寸、设备、场景或平台的设计。实现断点、流体布局和触控目标。用于响应式设计、移动布局、断点、视口适配或跨设备兼容性。 |
 | `airflow-dag-patterns` | 使用最佳实践构建生产级Airflow DAG，用于数据管道、工作流编排或批处理作业调度。 |
@@ -251,10 +251,10 @@
 | `writing-plans` | 在接触代码前，有规范或多步骤任务需求时使用。 |
 | `xdrop` | 当用户需通过终端用Xdrop发送/获取文件、自动化加密分享链接工作流、提供Xdrop链接本地解密下载，或需Xdrop CLI参数（如--quiet等）时，使用此技能。 |
 
-## 3. 后端开发
+## 3. Backend Development
 
-| 技能名称 | 中文简介 |
-|---------|---------|
+| Skill Name | Description |
+|------------|-------------|
 | `email-and-password-best-practices` | 配置邮箱验证、密码重置流程、密码策略及哈希算法，用于Better Auth的登录、注册与密码安全。 |
 | `nestjs-expert` | 您是Nest.js专家，精通企业级Node.js架构、依赖注入、装饰器、中间件、守卫、拦截器、管道、测试、数据库集成及认证系统。 |
 | `organization-best-practices` | 配置多租户组织、管理成员与邀请、定义自定义角色权限、设置团队，并通过Better Auth组织插件实现RBAC。适用于用户需组织设置、团队管理、成员角色、访问控制或该插件时。 |
@@ -265,17 +265,17 @@
 | `xget` | 当任务涉及Xget URL重写、注册表/包/容器/API时使用 |
 | `xlsx` | 当电子表格文件是主要输入或输出时使用此技能，包括打开、编辑、创建或转换表格文件。 |
 
-## 4. 数据库与存储
+## 4. Database & Storage
 
-| 技能名称 | 中文简介 |
-|---------|---------|
+| Skill Name | Description |
+|------------|-------------|
 | `database-migration` | 跨ORM与平台执行数据库迁移，支持零宕机、数据转换及回滚。适用于数据库迁移、架构变更、数据转换或零宕机部署。 |
 | `postgresql-optimization` | 专注于PostgreSQL独特功能、高级数据类型及专属能力的开发助手，涵盖JSONB、数组、自定义/范围/几何类型、全文搜索、窗口函数及扩展生态。 |
 
-## 5. DevOps 与云基础设施
+## 5. DevOps & Cloud
 
-| 技能名称 | 中文简介 |
-|---------|---------|
+| Skill Name | Description |
+|------------|-------------|
 | `dependency-upgrade` | 通过兼容性分析、分阶段发布和全面测试管理主要依赖版本升级，适用于框架升级、重大依赖更新或库的破坏性变更。 |
 | `distributed-tracing` | 使用Jaeger和Tempo实现分布式追踪，跨微服务跟踪请求并识别性能瓶颈。 |
 | `elite-longterm-memory` | 终极AI智能体记忆系统，集成WAL协议、向量搜索、Git知识图谱与云备份，永不丢失上下文。适用于Clawdbot、Moltbot、Claude、GPT智能体。 |
@@ -295,10 +295,10 @@
 | `uv-package-manager` | 掌握uv包管理器，快速管理Python依赖、虚拟环境与项目工作流。 |
 | `writing-skills` | 创建新技能、编辑或部署前验证时使用。 |
 
-## 6. 测试与质量保证
+## 6. Testing & QA
 
-| 技能名称 | 中文简介 |
-|---------|---------|
+| Skill Name | Description |
+|------------|-------------|
 | `code-review-excellence` | 掌握有效代码审查实践，提供建设性反馈，及早发现错误，促进知识共享，维护团队士气。用于审查拉取请求、制定审查标准或指导开发者。 |
 | `debugging-strategies` | 掌握系统调试、性能分析及根因分析，高效追踪任何代码库或技术栈中的Bug。用于排查Bug、性能问题或异常行为。 |
 | `llm-evaluation` | 使用自动化指标、人工反馈和基准测试全面评估LLM应用性能与质量。 |
@@ -314,33 +314,33 @@
 | `using-git-worktrees` | 在需要隔离当前工作区或执行实施计划前使用——创建隔离的git工作树，智能选择目录并安全验证 |
 | `workflow-patterns` | 在Conductor的TDD工作流中实施任务时使用此技能。 |
 
-## 7. Python 生态
+## 7. Python Ecosystem
 
-| 技能名称 | 中文简介 |
-|---------|---------|
+| Skill Name | Description |
+|------------|-------------|
 | `python-background-jobs` | Python后台任务模式：任务队列、工作者与事件驱动架构，适用于异步处理、作业队列、长时操作或解耦请求响应。 |
 | `python-packaging` | 使用正确项目结构创建可分发的Python包，并发布至PyPI。适用于打包库、CLI工具或分发代码。 |
 | `python-type-safety` | Python类型安全：类型提示、泛型、协议与严格检查。用于添加注解、实现泛型类、定义结构接口或配置mypy/pyright。 |
 
-## 8. AI/ML 与数据工程
+## 8. AI/ML & Data Engineering
 
-| 技能名称 | 中文简介 |
-|---------|---------|
+| Skill Name | Description |
+|------------|-------------|
 | `algorithmic-art` | 使用p5.js创建算法艺术，结合种子随机性与交互参数探索。 |
 
-## 9. 安全
+## 9. Security
 
-| 技能名称 | 中文简介 |
-|---------|---------|
+| Skill Name | Description |
+|------------|-------------|
 | `binary-analysis-patterns` | 掌握二进制分析模式，包括反汇编、反编译、控制流分析和代码模式识别。用于分析可执行文件、理解编译代码或进行静态分析。 |
 | `memory-safety-patterns` | 在Rust、C++和C中，使用RAII、所有权、智能指针和资源管理实现内存安全编程，用于编写安全系统代码、管理资源或防止内存错误。 |
 | `solidity-security` | 掌握智能合约安全最佳实践，防范常见漏洞，实施安全Solidity模式。用于编写、审计合约或区块链应用安全措施。 |
 | `threat-mitigation-mapping` | 将已识别的威胁映射到适当的安全控制与缓解措施。用于安全投资优先级排序、制定修复计划或验证控制有效性。 |
 
-## 10. 文档与内容处理
+## 10. Documentation & Content
 
-| 技能名称 | 中文简介 |
-|---------|---------|
+| Skill Name | Description |
+|------------|-------------|
 | `changelog-automation` | 根据提交、PR和发布自动生成符合Keep a Changelog格式的更新日志。 |
 | `hads` | 用于编写人机皆可读的技术文档、转换HADS格式、验证或优化文档以节省AI令牌。 |
 | `ocr-document-processor` | 从扫描件、图像和PDF中提取文本与结构，用于OCR、可搜索PDF、表格提取、收据及名片解析。 |
@@ -349,41 +349,41 @@
 | `pdftk-server` | 使用命令行工具pdftk处理PDF文件：合并、拆分、旋转、加密解密、填表、水印、提取元数据、修复、附加文件等操作。 |
 | `technical-writer` | | |
 
-## 11. Git 与版本控制
+## 11. Git & Version Control
 
-| 技能名称 | 中文简介 |
-|---------|---------|
+| Skill Name | Description |
+|------------|-------------|
 | `git-advanced-workflows` | 掌握高级Git工作流：rebase、cherry-pick、bisect、worktrees和reflog，保持历史整洁，应对任何情况。 |
 
-## 12. 架构与设计模式
+## 12. Architecture & Design Patterns
 
-| 技能名称 | 中文简介 |
-|---------|---------|
+| Skill Name | Description |
+|------------|-------------|
 | `architecture-decision-records` | 遵循最佳实践编写和维护架构决策记录（ADR），用于记录重要技术决策、审查过往架构选择或建立决策流程。 |
 | `self-improving-agent` | 通用自我进化智能体，从所有技能经验中学习。采用多记忆架构（语义+情景+工作记忆）持续优化代码库，通过钩子机制在技能完成/错误时自动触发自我修正。 |
 
-## 13. 移动端开发
+## 13. Mobile Development
 
-| 技能名称 | 中文简介 |
-|---------|---------|
+| Skill Name | Description |
+|------------|-------------|
 | `uni-app` | uni-app跨平台开发框架技能全参考 |
 | `uni-helper` | uni-helper生态技能全参考 - uni-app AI开发工具 |
 | `uniapp说明` | 移动端uniapp开发说明 |
 
-## 14. 创业与商业
+## 14. Startup & Business
 
-| 技能名称 | 中文简介 |
-|---------|---------|
+| Skill Name | Description |
+|------------|-------------|
 | `competitive-landscape` | 运用波特五力、蓝海战略和定位图分析竞争，识别差异化机会，制定制胜市场定位策略。 |
 | `employment-contract-templates` | 根据法律最佳实践创建雇佣合同、录用通知书及HR政策文件。 |
 | `internal-comms` | 一套资源助我撰写各类内部通讯，采用公司偏好的格式。 |
 | ~~`on-call-handoff-patterns`~~ | ~~掌握值班交接：上下文传递、升级流程与文档记录。用于工程师交接、撰写摘要、事件中途交接、新人培训及流程优化。~~ |
 | ~~`postmortem-writing`~~ | ~~通过根本原因分析、时间线和行动项撰写有效的无责事后报告，用于事件复盘、文档编写或改进响应流程。~~ |
 
-## 15. 开发工作流与协作
+## 15. Development Workflow & Collaboration
 
-| 技能名称 | 中文简介 |
-|---------|---------|
+| Skill Name | Description |
+|------------|-------------|
 | `context-driven-development` | >— |
 | `dispatching-parallel-agents` | 适用于2个以上独立任务，无共享状态或顺序依赖时使用。 |
 | `executing-plans` | 在单独会议中按书面执行计划操作，并设审查节点。 |
@@ -392,10 +392,10 @@
 | `subagent-driven-development` | 在当前会话中执行独立任务时使用 |
 | `track-management` | 在创建、管理或处理Conductor轨道时使用此技能。适用于spec.md、plan.md及轨道生命周期操作。 |
 
-## 16. 工具与实用程序
+## 16. Tools & Utilities
 
-| 技能名称 | 中文简介 |
-|---------|---------|
+| Skill Name | Description |
+|------------|-------------|
 | `excel-automation` | > |
 | `firecrawl` | | |
 | `firecrawl-agent` | | |
@@ -406,13 +406,13 @@
 | `firecrawl-scrape` | | |
 | `firecrawl-search` | | |
 
-## 17. 其他
+## 17. Other
 
-| 技能名称 | 中文简介 |
-|---------|---------|
+| Skill Name | Description |
+|------------|-------------|
 | `caveman` | > |
 | `evaluation-methodology` | 插件质量评估方法——维度、评分标准、统计方法与公式。用于理解质量测量、解读低分、提升触发准确度或编排适配度、校准市场评分阈值，或向外部合作伙伴解释质量徽章。 |
 | `shellcheck-configuration` | 掌握ShellCheck静态分析配置与用法，提升脚本质量，用于搭建检查、修复代码或确保可移植性。 |
 | `template-skill` | 用技能描述替换，并说明Claude何时使用。 |
 
-> 📊 统计：共 17 个分类，302 个技能（2 个已删除）
+> Stats: 17 categories, 301 skills (3 deleted)

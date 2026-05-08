@@ -17,42 +17,76 @@ export const logger = pino(
     level: process.env.LOG_LEVEL ?? 'info',
     timestamp: pino.stdTimeFunctions.isoTime,
     messageKey: 'msg',
-    transport: {
-      targets: [
-        {
-          target: 'pino-pretty',
-          level: 'info',
-          options: {
-            colorize: true,
-            translateTime: 'SYS:yyyy-mm-dd HH:MM:ss',
-            ignore: 'pid,hostname',
-            messageKey: 'msg',
-            crlf: true,
-            singleLine: true,
-            destination: 1,
-          },
-        },
-        {
-          target: 'pino-roll',
-          level: 'info',
-          options: {
-            file: logFilePath,
-            size: '5m',
-            mkdir: true,
-          },
-        },
-      ],
+    base: {
+      pid: process.pid,
+    },
+    formatters: {
+      level(label) {
+        return { level: label };
+      },
+    },
+    mixin() {
+      return { ts: new Date().toISOString() };
     },
   },
+  pino.multistream([
+    {
+      level: 'info',
+      stream: pino.transport({
+        target: 'pino-pretty',
+        options: {
+          colorize: true,
+          translateTime: 'yyyy-mm-dd HH:MM:ss',
+          ignore: 'pid,hostname,ts',
+          messageKey: 'msg',
+          crlf: false,
+          singleLine: true,
+        },
+      }),
+    },
+    {
+      level: 'error',
+      stream: pino.transport({
+        target: 'pino-roll',
+        options: {
+          file: logFilePath,
+          size: '5m',
+          mkdir: true,
+          maxFiles: 5,
+        },
+      }),
+    },
+    {
+      level: 'info',
+      stream: pino.transport({
+        target: 'pino-roll',
+        options: {
+          file: logFilePath,
+          size: '5m',
+          mkdir: true,
+          maxFiles: 5,
+        },
+      }),
+    },
+    {
+      level: 'warn',
+      stream: pino.transport({
+        target: 'pino-roll',
+        options: {
+          file: logFilePath,
+          size: '5m',
+          mkdir: true,
+          maxFiles: 5,
+        },
+      }),
+    },
+  ]),
 );
 
+export function createChildLogger(module: string): pino.Logger {
+  return logger.child({ module });
+}
+
 export function getTimestamp(): string {
-  return new Date().toLocaleString('zh-CN', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-  });
+  return new Date().toISOString().replace('T', ' ').substring(0, 19);
 }
