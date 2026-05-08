@@ -1157,15 +1157,6 @@
       "installedAt": "2026-04-14T05:46:53.571Z",
       "updatedAt": "2026-04-14T05:46:53.571Z"
     },
-    "caveman": {
-      "source": "juliusbrussee/caveman",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/juliusbrussee/caveman.git",
-      "skillPath": "caveman/SKILL.md",
-      "skillFolderHash": "825e13085d1515fe67881b2123f3bf9b34c26154",
-      "installedAt": "2026-04-14T05:49:32.628Z",
-      "updatedAt": "2026-04-14T05:49:32.628Z"
-    },
     "accessibility-compliance": {
       "source": "wshobson/agents",
       "sourceType": "github",
