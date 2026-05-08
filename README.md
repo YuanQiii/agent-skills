@@ -14,6 +14,7 @@ Agent Skills 双向同步工具，支持本地实时监视和 GitHub Actions 定
 - ✅ 技能分类索引自动生成
 - ✅ TypeScript 严格模式 + 单元测试
 - ✅ 可配置参数（sync.config.json）
+- ✅ 删除的技能用横线标记保留历史记录
 
 ## 🚀 快速开始
 
@@ -21,13 +22,13 @@ Agent Skills 双向同步工具，支持本地实时监视和 GitHub Actions 定
 
 ```bash
 cd ~/.agents
-npm install
+pnpm install
 ```
 
 ### 第二步：构建
 
 ```bash
-npm run build
+pnpm run build
 ```
 
 ### 第三步：配置 Git 认证
@@ -54,7 +55,7 @@ git push -u origin main
 ### 第五步：启动本地监视（可选）
 
 ```bash
-npm run watch
+pnpm run watch
 ```
 
 ## 📁 目录结构
@@ -72,13 +73,12 @@ npm run watch
 │   │   └── retry.ts              # 重试工具
 │   ├── infra/                    # 基础设施层（外部依赖封装）
 │   │   ├── config.ts             # 配置加载
-│   │   ├── logger.ts             # pino 日志
+│   │   ├── logger.ts             # pino 日志（中文输出）
 │   │   ├── git-operations.ts     # Git 操作
 │   │   └── translator.ts         # 翻译逻辑
 │   ├── core/                     # 核心领域（纯业务逻辑）
 │   │   ├── skills.ts             # 技能解析
-│   │   ├── categories.ts         # 分类定义
-│   │   └── catalog.ts            # 目录生成
+│   │   └── catalog.ts            # 目录生成（含分类）
 │   ├── sync/                     # 应用服务（同步编排）
 │   │   ├── orchestrator.ts       # 同步编排
 │   │   └── watcher.ts            # 文件监视
@@ -104,6 +104,7 @@ npm run watch
 ├── eslint.config.js
 ├── vitest.config.ts
 ├── sync.config.json
+├── pnpm-lock.yaml
 └── .gitignore
 ```
 
@@ -112,7 +113,7 @@ npm run watch
 ### 本地监视模式
 
 ```bash
-npm run watch
+pnpm run watch
 ```
 
 监视到文件变化后自动同步到 GitHub（默认5秒防抖），新增 Skill 自动翻译。
@@ -120,19 +121,19 @@ npm run watch
 ### 手动同步
 
 ```bash
-npm run sync
+pnpm run sync
 ```
 
 ### 生成技能目录
 
 ```bash
-npm run catalog
+pnpm run catalog
 ```
 
 ### 批量翻译
 
 ```bash
-npm run translate
+pnpm run translate
 ```
 
 需要设置 `DEEPSEEK_API_KEY` 环境变量。
@@ -140,18 +141,18 @@ npm run translate
 ### 开发模式（无需编译）
 
 ```bash
-npm run dev:watch
-npm run dev:sync
-npm run dev:catalog
-npm run dev:translate
+pnpm run dev:watch
+pnpm run dev:sync
+pnpm run dev:catalog
+pnpm run dev:translate
 ```
 
 ### 测试
 
 ```bash
-npm test           # 运行测试
-npm run lint       # ESLint 检查
-npm run typecheck  # 类型检查
+pnpm test           # 运行测试
+pnpm run lint       # ESLint 检查
+pnpm run typecheck  # 类型检查
 ```
 
 ## ⚙️ 配置文件
@@ -190,6 +191,7 @@ npm run typecheck  # 类型检查
 
 ## 📝 更新日志
 
+- 2026-05-08: v3.1.0 — 迁移至 pnpm，日志改为中文，技能删除保留历史记录
 - 2026-05-03: v3.0.0 — TypeScript 重构，pino 日志，单元测试，CI/CD
 - 2026-05-02: 修复安全问题、添加重试机制、配置文件支持
 - 2026-05-02: 初始版本

@@ -48,6 +48,42 @@ export function categorizeSkills(
     .filter(c => c.skills.length > 0 || c.deletedSkills.length > 0);
 }
 
+const MAX_DESC_LENGTH = 120;
+
+function cleanDescription(desc: string): string {
+  if (!desc || desc.trim() === '') {
+    return '(no description)';
+  }
+  
+  let cleaned = desc.trim();
+  
+  const invalidPatterns = [
+    /^>\s*—?\s*$/,
+    /^\|\s*\|$/,
+    /^\|\s*$/,
+    /^\s*$/,
+  ];
+  
+  for (const pattern of invalidPatterns) {
+    if (pattern.test(cleaned)) {
+      return '(no description)';
+    }
+  }
+  
+  return cleaned;
+}
+
+function truncateDescription(desc: string): string {
+  const cleaned = cleanDescription(desc);
+  if (cleaned === '(no description)') {
+    return cleaned;
+  }
+  if (cleaned.length <= MAX_DESC_LENGTH) {
+    return cleaned;
+  }
+  return cleaned.substring(0, MAX_DESC_LENGTH).trim() + '...';
+}
+
 export function generateCatalogMarkdown(
   skills: SkillInfo[],
   translations: Record<string, string>,
@@ -67,9 +103,17 @@ export function generateCatalogMarkdown(
   const totalCategories = categorized.length;
   const totalActive = skills.length;
   const totalDeleted = deletedSkillNames.length;
+  const updateTime = new Date().toLocaleString('zh-CN', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
 
   let md = '# Agent Skills Catalog\n\n';
-  md += `> ${totalActive} active skills (${totalDeleted} deleted), ${totalCategories} categories\n\n`;
+  md += `> ${totalActive} 个可用技能 (${totalDeleted} 个已删除), ${totalCategories} 个分类\n\n`;
+  md += `> 更新时间: ${updateTime}\n\n`;
   md += '---\n\n## Table of Contents\n\n';
 
   categorized.forEach((c, i) => {
@@ -88,18 +132,19 @@ export function generateCatalogMarkdown(
 
     for (const skill of c.skills) {
       const cn = translations[skill.name] || translations[skill.dir] || skill.desc || '(no description)';
-      md += `| \`${skill.name}\` | ${cn} |\n`;
+      md += `| ${skill.name} | ${truncateDescription(cn)} |\n`;
     }
 
     for (const skill of c.deletedSkills) {
       const cn = translations[skill.name] || translations[skill.dir] || '(deleted)';
-      md += `| ~~\`${skill.name}\`~~ | ~~${cn}~~ |\n`;
+      md += `| ~~${skill.name}~~ | ~~${truncateDescription(cn)}~~ |\n`;
     }
 
     md += '\n';
   });
 
-  md += `> Stats: ${totalCategories} categories, ${totalActive} skills (${totalDeleted} deleted)\n`;
+  md += `> 统计: ${totalCategories} 个分类, ${totalActive} 个技能 (${totalDeleted} 个已删除)\n`;
+  md += `> 更新时间: ${updateTime}\n`;
   return md;
 }
 
