@@ -1,6 +1,6 @@
 # Agent Skills Catalog
 
-> 292 个可用技能 (12 个已删除), 18 个分类
+> 291 个可用技能 (13 个已删除), 18 个分类
 
 ---
 
@@ -12,7 +12,7 @@
 - [4. DevOps 与云](#4-DevOps-%E4%B8%8E%E4%BA%91) (43 (4 已删除))
 - [5. 测试与质量保障](#5-%E6%B5%8B%E8%AF%95%E4%B8%8E%E8%B4%A8%E9%87%8F%E4%BF%9D%E9%9A%9C) (35)
 - [6. Python 生态](#6-Python-%E7%94%9F%E6%80%81) (11)
-- [7. AI/ML 与数据工程](#7-AI%2FML-%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B) (11 (1 已删除))
+- [7. AI/ML 与数据工程](#7-AI%2FML-%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B) (10 (2 已删除))
 - [8. 安全](#8-%E5%AE%89%E5%85%A8) (9)
 - [9. 文档与内容](#9-%E6%96%87%E6%A1%A3%E4%B8%8E%E5%86%85%E5%AE%B9) (15)
 - [10. Git 与版本控制](#10-Git-%E4%B8%8E%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6) (2)
@@ -240,10 +240,10 @@
 | karpathy-guidelines | 减少常见LLM编码错误的行为指南，用于编写、审查或重构代码时避免过度复杂化、精准修改、明确假设并定义可验证的成功标准。 |
 | langchain-architecture | 使用LangChain 1.x和LangGraph设计LLM应用，集成代理、记忆与工具。 |
 | prompt-engineering-patterns | 掌握高级提示工程技巧，最大化LLM性能、可靠性与可控性。用于优化提示、改进输出或设计生产模板。 |
-| risk-metrics-calculation | 计算投资组合风险指标，包括VaR、CVaR、夏普、索提诺及回撤分析。用于衡量风险、设定限额或构建监控系统。 |
 | running-claude-code-via-litellm-copilot | 通过本地LiteLLM代理路由Claude Code至GitHub Copilot时使用，减少直接Anthropic支出，配置ANTHROPIC_BASE_URL或ANTHROPIC_MODEL覆盖，或排查Copilot代理设置失败（如模型... |
 | vector-index-tuning | 优化向量索引的延迟、召回率与内存性能，用于调参、量化或扩展搜索。 |
 | ~~data-storytelling~~ | ~~用可视化、情境和说服结构将数据转化为引人入胜的故事。适用于向利益相关者展示分析、创建数据报告或构建高管演示。~~ |
+| ~~risk-metrics-calculation~~ | ~~计算投资组合风险指标，包括VaR、CVaR、夏普、索提诺及回撤分析。用于衡量风险、设定限额或构建监控系统。~~ |
 
 ## 8. 安全
 
@@ -421,4 +421,4 @@
 | evaluation-methodology | 插件质量评估方法——维度、评分标准、统计方法与公式。用于理解质量测量、解读低分、提升触发准确度或编排适配度、校准市场评分阈值，或向外部合作伙伴解释质量徽章。 |
 | shellcheck-configuration | 掌握ShellCheck静态分析配置与用法，提升脚本质量，用于搭建检查、修复代码或确保可移植性。 |
 
-> 统计: 18 个分类, 292 个技能 (12 个已删除)
+> 统计: 18 个分类, 291 个技能 (13 个已删除)
