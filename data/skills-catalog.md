@@ -1,6 +1,6 @@
 # Agent Skills Catalog
 
-> 288 个可用技能 (16 个已删除), 18 个分类
+> 287 个可用技能 (17 个已删除), 18 个分类
 
 ---
 
@@ -17,7 +17,7 @@
 - [9. 文档与内容](#9-%E6%96%87%E6%A1%A3%E4%B8%8E%E5%86%85%E5%AE%B9) (14 (1 已删除))
 - [10. Git 与版本控制](#10-Git-%E4%B8%8E%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6) (1)
 - [11. 架构与设计模式](#11-%E6%9E%B6%E6%9E%84%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F) (9)
-- [12. 移动开发](#12-%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91) (10)
+- [12. 移动开发](#12-%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91) (9 (1 已删除))
 - [13. 区块链与 Web3](#13-%E5%8C%BA%E5%9D%97%E9%93%BE%E4%B8%8E-Web3) (2 (2 已删除))
 - [14. 创业与商业](#14-%E5%88%9B%E4%B8%9A%E4%B8%8E%E5%95%86%E4%B8%9A) (5 (3 已删除))
 - [15. UI/UX 设计](#15-UI%2FUX-%E8%AE%BE%E8%AE%A1) (43)
@@ -305,7 +305,6 @@
 |----------|------|
 | accessibility-compliance | 实现WCAG 2.2合规界面，支持移动无障碍、包容性设计及辅助技术。 |
 | adapt | 适配不同屏幕尺寸、设备、场景或平台的设计。实现断点、流体布局和触控目标。用于响应式设计、移动布局、断点、视口适配或跨设备兼容性。 |
-| mobile-android-design | 掌握Material Design 3与Jetpack Compose模式，构建原生Android应用。 |
 | mobile-ios-design | 掌握iOS人机界面指南与SwiftUI模式，用于设计界面、实现视图或遵循苹果设计原则。 |
 | responsive-design | 使用容器查询、流式排版、CSS网格和移动优先断点实现现代响应式布局。 |
 | sleek-design-mobile-apps | 当用户设计移动应用、创建界面或管理Sleek项目时使用。 |
@@ -313,6 +312,7 @@
 | uni-helper | uni-helper生态技能全参考 - uni-app AI开发工具 |
 | uniapp说明 | 移动端uniapp开发说明 |
 | wot-ui | wot-ui uni-app 组件库开发指南。用于解答组件使用、配置、示例或API问题。 |
+| ~~mobile-android-design~~ | ~~掌握Material Design 3与Jetpack Compose模式，构建原生Android应用。~~ |
 
 ## 13. 区块链与 Web3
 
@@ -421,4 +421,4 @@
 | evaluation-methodology | 插件质量评估方法——维度、评分标准、统计方法与公式。用于理解质量测量、解读低分、提升触发准确度或编排适配度、校准市场评分阈值，或向外部合作伙伴解释质量徽章。 |
 | shellcheck-configuration | 掌握ShellCheck静态分析配置与用法，提升脚本质量，用于搭建检查、修复代码或确保可移植性。 |
 
-> 统计: 18 个分类, 288 个技能 (16 个已删除)
+> 统计: 18 个分类, 287 个技能 (17 个已删除)
