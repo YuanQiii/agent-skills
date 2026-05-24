@@ -1,6 +1,6 @@
 # Agent Skills Catalog
 
-> 285 个可用技能 (21 个已删除), 18 个分类
+> 286 个可用技能 (21 个已删除), 18 个分类
 
 ---
 
@@ -23,7 +23,7 @@
 - [15. UI/UX 设计](#15-UI%2FUX-%E8%AE%BE%E8%AE%A1) (43)
 - [16. 开发工作流与协作](#16-%E5%BC%80%E5%8F%91%E5%B7%A5%E4%BD%9C%E6%B5%81%E4%B8%8E%E5%8D%8F%E4%BD%9C) (6 (1 已删除))
 - [17. 工具与实用程序](#17-%E5%B7%A5%E5%85%B7%E4%B8%8E%E5%AE%9E%E7%94%A8%E7%A8%8B%E5%BA%8F) (11 (1 已删除))
-- [18. 其他](#18-%E5%85%B6%E4%BB%96) (3)
+- [18. 其他](#18-%E5%85%B6%E4%BB%96) (4)
 
 ---
 
@@ -422,5 +422,6 @@
 | design-md | 分析Stitch项目并合成语义设计系统至DESIGN.md文件 |
 | evaluation-methodology | 插件质量评估方法——维度、评分标准、统计方法与公式。用于理解质量测量、解读低分、提升触发准确度或编排适配度、校准市场评分阈值，或向外部合作伙伴解释质量徽章。 |
 | shellcheck-configuration | 掌握ShellCheck静态分析配置与用法，提升脚本质量，用于搭建检查、修复代码或确保可移植性。 |
+| to-prd | Turn the current conversation context into a PRD and publish it to the project issue tracker. Use when user wants to cre... |
 
-> 统计: 18 个分类, 285 个技能 (21 个已删除)
+> 统计: 18 个分类, 286 个技能 (21 个已删除)
