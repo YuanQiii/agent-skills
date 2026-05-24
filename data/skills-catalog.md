@@ -1,6 +1,6 @@
 # Agent Skills Catalog
 
-> 283 个可用技能 (21 个已删除), 18 个分类
+> 284 个可用技能 (21 个已删除), 18 个分类
 
 ---
 
@@ -10,7 +10,7 @@
 - [2. 后端开发](#2-%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91) (18)
 - [3. 数据库与存储](#3-%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%8E%E5%AD%98%E5%82%A8) (13)
 - [4. DevOps 与云](#4-DevOps-%E4%B8%8E%E4%BA%91) (43 (4 已删除))
-- [5. 测试与质量保障](#5-%E6%B5%8B%E8%AF%95%E4%B8%8E%E8%B4%A8%E9%87%8F%E4%BF%9D%E9%9A%9C) (35)
+- [5. 测试与质量保障](#5-%E6%B5%8B%E8%AF%95%E4%B8%8E%E8%B4%A8%E9%87%8F%E4%BF%9D%E9%9A%9C) (36)
 - [6. Python 生态](#6-Python-%E7%94%9F%E6%80%81) (11)
 - [7. AI/ML 与数据工程](#7-AI%2FML-%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B) (10 (2 已删除))
 - [8. 安全](#8-%E5%AE%89%E5%85%A8) (9)
@@ -186,6 +186,7 @@
 | debugging-strategies | 掌握系统调试、性能分析及根因分析，高效追踪任何代码库或技术栈中的Bug。用于排查Bug、性能问题或异常行为。 |
 | develop-userscripts | 用于构建、调试、打包或发布Tampermonkey/ScriptCat用户脚本，涵盖GM API、元数据块、权限、@match/@grant/@connect设置、后台/定时脚本、UserConfig及订阅流程。 |
 | finishing-a-development-branch | 实现完成后使用，所有测试通过，需决定如何整合工作——通过提供合并、PR或清理的结构化选项指导开发收尾。 |
+| grill-me | Interview the user relentlessly about a plan or design until reaching shared understanding, resolving each branch of the... |
 | kpi-dashboard-design | 设计高效KPI仪表盘：选指标、可视化最佳实践、实时监控。适用于SaaS高管看板（MRR/流失/LTV:CAC）、运营中心、产品团队留存分析，或排查指标矛盾问题。 |
 | llm-evaluation | 使用自动化指标、人工反馈和基准测试全面评估LLM应用性能与质量。 |
 | parallel-debugging | 使用竞争假设并行调查、收集证据并仲裁根因，以调试复杂问题。 |
@@ -421,4 +422,4 @@
 | evaluation-methodology | 插件质量评估方法——维度、评分标准、统计方法与公式。用于理解质量测量、解读低分、提升触发准确度或编排适配度、校准市场评分阈值，或向外部合作伙伴解释质量徽章。 |
 | shellcheck-configuration | 掌握ShellCheck静态分析配置与用法，提升脚本质量，用于搭建检查、修复代码或确保可移植性。 |
 
-> 统计: 18 个分类, 283 个技能 (21 个已删除)
+> 统计: 18 个分类, 284 个技能 (21 个已删除)
